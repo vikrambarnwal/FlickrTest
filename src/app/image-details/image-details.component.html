@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="p-2 text-center">
+      <div class="card" style="width: 18rem;" *ngIf="imageData">
+        <img class="card-img-top" src="{{imgUrl}}" alt="Image">
+        <div class="card-body">
+          <p class="card-text">
+            Image Id :- {{model.id}}
+            UserName :- {{imageData.owner.username}}
+            Description :- {{imageData.description._content}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+
+    <div class="container">
+      <div [hidden]="submitted">
+        <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
+        <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+
+          <div class="form-group">
+            <label for="power">Rate our images</label>
+            <select class="form-control" id="rate" required [(ngModel)]="model.rate" name="rate" #rate="ngModel">
+              <option [value]="1">1</option>
+              <option [value]="2">2</option>
+              <option [value]="3">3</option>
+              <option [value]="4">4</option>
+              <option [value]="5">5</option>
+              <option [value]="6">6</option>
+              <option [value]="7">7</option>
+              <option [value]="8">8</option>
+              <option [value]="9">9</option>
+              <option [value]="10">10</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Rating provided by</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="alterEgo">Reason for the rating</label>
+            <input type="text" class="form-control" id="reason" [(ngModel)]="model.reason" name="reason" required>
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="!reviewForm.form.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
